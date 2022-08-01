@@ -1,11 +1,22 @@
 package com.surajanbhule.models;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Objects;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
+
+import org.hibernate.annotations.ManyToAny;
 
 @Entity
 public class Teacher {
@@ -19,11 +30,10 @@ public class Teacher {
 	private String teacher_email;
 	private String teacher_phone;
 	private String teacher_address;
-	@OneToOne
-	@JoinColumn(name="subject_id")
-	private Subject subject;
 	
-	public Teacher() {}
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name="teacher_subject",joinColumns = @JoinColumn(name="teacher_id"),inverseJoinColumns = @JoinColumn(name="subject_id"))
+	private List<Subject> subject_list= new ArrayList<Subject>();
 
 	public int getTeacher_id() {
 		return teacher_id;
@@ -53,8 +63,8 @@ public class Teacher {
 		return teacher_email;
 	}
 
-	public void setTeacher_email(String teacher_eamil) {
-		this.teacher_email = teacher_eamil;
+	public void setTeacher_email(String teacher_email) {
+		this.teacher_email = teacher_email;
 	}
 
 	public String getTeacher_phone() {
@@ -73,13 +83,16 @@ public class Teacher {
 		this.teacher_address = teacher_address;
 	}
 
-	public Subject getSubject() {
-		return subject;
+	public List<Subject> getSubject_list() {
+		return subject_list;
 	}
 
-	public void setSubject(Subject subject) {
-		this.subject = subject;
+	public void setSubject_list(List<Subject> subject_list) {
+		this.subject_list = subject_list;
 	}
+
+
+
 	
 	
 }

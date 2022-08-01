@@ -13,6 +13,10 @@
     		<property name="hibernate.show_sql">true</property>
     		<property name="hibernate.format.sql">true</property>
     		<mapping class="com.surajanbhule.util.Login"/>
+    		<mapping class="com.surajanbhule.models.Classes"/>
+    		<mapping class="com.surajanbhule.models.Student"/>
+    		<mapping class="com.surajanbhule.models.Subject"/>
+    		<mapping class="com.surajanbhule.models.Teacher"/>
     		
     	</session-factory>
     </hibernate-configuration>

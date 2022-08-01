@@ -1,18 +1,31 @@
 package com.surajanbhule.models;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+
+@Entity
 public class Student {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int student_id;
 	private String student_first_name;
 	private String student_last_name;
 	private String student_email;
 	private String student_phone;
 	private String student_address;
-	private Set<Classes> classes_list= new HashSet();
+	
+	@ManyToMany(mappedBy = "student_list")
+	private List<Classes> classes_list= new ArrayList<Classes>();
 	
 	
 	public Student() {}
@@ -65,37 +78,14 @@ public class Student {
 		this.student_address = student_address;
 	}
 
-	public Set<Classes> getClasses_list() {
+	public List<Classes> getClasses_list() {
 		return classes_list;
 	}
 
-	public void setClasses_list(Set<Classes> classes_list) {
+	public void setClasses_list(List<Classes> classes_list) {
 		this.classes_list = classes_list;
 	}
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(classes_list, student_address, student_email, student_first_name, student_id,
-				student_last_name, student_phone);
-	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Student other = (Student) obj;
-		return Objects.equals(classes_list, other.classes_list)
-				&& Objects.equals(student_address, other.student_address)
-				&& Objects.equals(student_email, other.student_email)
-				&& Objects.equals(student_first_name, other.student_first_name) && student_id == other.student_id
-				&& Objects.equals(student_last_name, other.student_last_name)
-				&& Objects.equals(student_phone, other.student_phone);
-	}
-	
-	
 	
 }

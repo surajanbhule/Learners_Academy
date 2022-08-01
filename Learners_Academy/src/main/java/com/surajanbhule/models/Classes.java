@@ -1,18 +1,38 @@
 package com.surajanbhule.models;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
+
+@Entity
 public class Classes {
-	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int class_id;
 	private String class_name;
 	private double class_time;
 	private double class_duration;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="teacher_id")
 	private Teacher teacher;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="subject_id")
 	private Subject subject;
-	private Set<Student> student_list= new HashSet();
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name="classes_student",joinColumns = @JoinColumn(name="classes_id"), inverseJoinColumns = @JoinColumn(name="student_id"))
+	private List<Student> student_list= new ArrayList<Student>();
 	
 	public Classes() {}
 
@@ -64,35 +84,15 @@ public class Classes {
 		this.subject = subject;
 	}
 
-	public Set<Student> getStudent_list() {
+	public List<Student> getStudent_list() {
 		return student_list;
 	}
 
-	public void setStudent_list(Set<Student> student_list) {
+	public void setStudent_list(List<Student> student_list) {
 		this.student_list = student_list;
 	}
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(class_duration, class_id, class_name, class_time, student_list, subject, teacher);
-	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Classes other = (Classes) obj;
-		return Double.doubleToLongBits(class_duration) == Double.doubleToLongBits(other.class_duration)
-				&& class_id == other.class_id && Objects.equals(class_name, other.class_name)
-				&& Double.doubleToLongBits(class_time) == Double.doubleToLongBits(other.class_time)
-				&& Objects.equals(student_list, other.student_list) && Objects.equals(subject, other.subject)
-				&& Objects.equals(teacher, other.teacher);
-	}
-	
 	
 	
 }
