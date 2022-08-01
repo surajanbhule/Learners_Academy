@@ -10,9 +10,19 @@
   	<description></description>
   	<servlet-class>com.surajanbhule.controllers.AdminLogin</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>Test</servlet-name>
+  	<display-name>Test</display-name>
+  	<description></description>
+  	<servlet-class>com.surajanbhule.controllers.Test</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>AdminLogin</servlet-name>
   	<url-pattern>/AdminLogin</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>Test</servlet-name>
+  	<url-pattern>/Test</url-pattern>
   </servlet-mapping>
  <welcome-file-list>
  	<welcome-file>login.jsp</welcome-file>
