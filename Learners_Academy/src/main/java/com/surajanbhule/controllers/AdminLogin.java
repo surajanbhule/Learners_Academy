@@ -33,6 +33,12 @@ public class AdminLogin extends HttpServlet {
 				RequestDispatcher rd = req.getRequestDispatcher("/home.jsp");
 				rd.forward(req, resp);
 			}
+			else {
+				
+				RequestDispatcher rd = req.getRequestDispatcher("/login.jsp");
+				req.setAttribute("status","failed");
+				rd.include(req, resp);
+			}
 			
 			
 		} catch (Exception e) {

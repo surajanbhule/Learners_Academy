@@ -56,6 +56,8 @@ body {
 </style>
 </head>
 <body class="login-body">
+	<input type="hidden" id="status"
+		value="<%= request.getAttribute("status") %>">
 	<div class="container mt-5">
 		<div class="row w-100  ">
 			<div class="col-12 d-flex justify-content-center align-items-center">
@@ -87,7 +89,15 @@ body {
 			</div>
 		</div>
 	</div>
-
+	
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script type="text/javascript">
+		var status1 = document.getElementById("status").value;
+        if(status1=="failed"){
+		   swal("Login Failed!", "Check username and password, try again.",
+				"error");
+        }
+	</script>
 
 
 	<script
