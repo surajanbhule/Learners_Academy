@@ -1,9 +1,3 @@
-<%@page import="com.surajanbhule.models.Subject"%>
-<%@page import="java.util.List"%>
-<%@page import="com.surajanbhule.models.Teacher"%>
-<%@page import="org.hibernate.Query"%>
-<%@page import="com.surajanbhule.util.HibernateUtil"%>
-<%@page import="org.hibernate.Session"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -15,7 +9,6 @@
 	rel="stylesheet"
 	integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
 	crossorigin="anonymous">
-
 <title>Subject List</title>
 <style type="text/css">
 @import
@@ -98,49 +91,47 @@ body {
 	<div class="home-section">
 
 		<div class="table-container">
-			<h1 class="heading">Teacher List</h1>
+			<h1 class="heading">Student List</h1>
 			<table class="table">
 
 				<thead>
 					<tr>
-						<th>Teacher ID</th>
+						<th>Student ID</th>
 						<th>First Name</th>
 						<th>Last Name</th>
 						<th>Email</th>
 						<th>Phone</th>
 						<th>Address</th>
-						<th>Subjects</th>
+						<th>Classes</th>
 					</tr>
 				</thead>
 				<tbody>
-				<%
-				 Session sess= HibernateUtil.getSessionFactory().openSession();
-				 String hql="From Teacher";
-				 Query<Teacher> query= sess.createQuery(hql);
-				 List<Teacher> list=query.list();
-				 
-				 for(Teacher t:list){
-				%>
 					<tr >
-						<td ><%= t.getTeacher_id()  %></td>
-						<td><%= t.getTeacher_first_name()  %></td>
-						<td><%= t.getTeacher_last_name()  %></td>
-						<td><%= t.getTeacher_email()  %></td>
-						<td><%= t.getTeacher_phone()  %></td>
-						<td><%= t.getTeacher_address()  %></td>
-						<td><button type="button" class="btn btn-outline-success btn-sm">View Subjects</button></td>
-						<% } %>
+						<td >1</td>
+						<td>Suraj</td>
+						<td>Anbhule</td>
+						<td>surajanbhule69@gmail.com</td>
+						<td>9689462739</td>
+						<td>Madha Solapur</td>
+						<td><button type="button" class="btn btn-outline-success btn-sm">View Class</button></td>
 					</tr>
 					
-					
+					<tr>
+						<td >2</td>
+						<td>Sujata</td>
+						<td>Bhosale</td>
+						<td>sujatabhosale2206@gmail.com</td>
+						<td>8007702595</td>
+						<td>Pandharpur Solapur</td>
+						<td><button type="button" class="btn btn-outline-success btn-sm">View Class</button></td>
+					</tr>
 				</tbody>
 
 			</table>
 		</div>
 
 	</div>
-	
-	<script
+		<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
 		crossorigin="anonymous"></script>

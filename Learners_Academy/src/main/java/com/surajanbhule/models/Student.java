@@ -6,10 +6,13 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 @Entity
@@ -24,7 +27,9 @@ public class Student {
 	private String student_phone;
 	private String student_address;
 	
-	@ManyToMany(mappedBy = "student_list")
+	
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name="classes_student",joinColumns = @JoinColumn(name="student_id"), inverseJoinColumns = @JoinColumn(name="class_id"))
 	private List<Classes> classes_list= new ArrayList<Classes>();
 	
 	

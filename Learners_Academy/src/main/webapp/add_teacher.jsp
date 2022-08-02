@@ -1,3 +1,8 @@
+<%@page import="java.util.List"%>
+<%@page import="com.surajanbhule.models.Subject"%>
+<%@page import="org.hibernate.Query"%>
+<%@page import="com.surajanbhule.util.HibernateUtil"%>
+<%@page import="org.hibernate.Session"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -95,7 +100,7 @@ select:focus {
 	color: #FFEB3B;
 }
 
-select:after{
+select:after {
 	width: 400px;
 	height: 35px;
 	padding: 10px 20px;
@@ -111,15 +116,21 @@ select:after{
 	border-bottom: 1px solid #FEF9C3;
 	background: transparent;
 }
+
 .selected {
 	display: none;
 }
-
 </style>
 </head>
 <body class="login-body">
 	<%@include file="sidemenu.html"%>
-
+	<input type="hidden" id="status"
+		value="<%=request.getAttribute("status")%>">
+	<input type="hidden" id="id"
+		value="<%=request.getAttribute("id")%>">
+		
+	<input type="hidden" id="name"
+		value="<%=request.getAttribute("name")%>">
 	<div class="home-section">
 
 
@@ -130,14 +141,14 @@ select:after{
 					class="card w-100 text-center justify-content-center align-items-center login-card">
 					<h4 class="card-title">Add Teacher</h4>
 					<div class="card-body">
-						<form action="AddStudent" method="post">
+						<form action="AddTeacher" method="post">
 
 
 
 							<div class="mb-3">
 								<input type="text" class="form-control-sm input-box"
-									id="first_name" placeholder="First Name" name="teacher_first_name"
-									autocomplete="off">
+									id="first_name" placeholder="First Name"
+									name="teacher_first_name" autocomplete="off">
 							</div>
 
 							<div class="mb-3">
@@ -160,18 +171,29 @@ select:after{
 
 							<div class="mb-3">
 								<input type="text" class=" form-control-sm input-box" id="phone"
-									placeholder="phone number" name="teacher_phone" autocomplete="off">
+									placeholder="phone number" name="teacher_phone"
+									autocomplete="off">
 							</div>
 
 							<div class="mb3">
-							    <center>Select Subjects</center>
-								<select multiple="multiple" name="selected_subjects" title="Select Subjects">
-								
-									<option>Java</option>
-									<option>Python</option>
-									<option>C</option>
-									<option>C++</option>
-									<option>HTML CSS</option>
+								<center>Select Subjects</center>
+								<select multiple="multiple" name="selected_subjects"
+									title="Select Subjects">
+									<%
+									Session sess = HibernateUtil.getSessionFactory().openSession();
+
+									String hql = "From Subject";
+
+									@SuppressWarnings("deprecation")
+									Query<Subject> query = sess.createQuery(hql);
+									List<Subject> list = query.list();
+
+									for (Subject s : list) {
+									%>
+									<option value="<%= s.getSubject_id() %>"><%=s.getSubject_name()%></option>
+									<%
+									}
+									%>
 								</select>
 							</div>
 
@@ -186,6 +208,21 @@ select:after{
 		</div>
 
 	</div>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script type="text/javascript">
+		var status1 = document.getElementById("status").value;
+		var id = document.getElementById("id").value;
+		var name = document.getElementById("name").value;
+		if (status1 == "success") {
+			swal("Teacher Added Successfully!", "Subject ID: "+id+" Name: "+name,
+					"success");
+		}
+		if(status1=="failed")
+		{
+			swal("Unable To Save Record, Something Went Wrong!", "Please select atleast one subject for teacher",
+			"error");
+		}
+	</script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"

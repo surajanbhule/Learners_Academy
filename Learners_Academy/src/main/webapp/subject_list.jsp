@@ -1,3 +1,8 @@
+<%@page import="org.hibernate.Query"%>
+<%@page import="com.surajanbhule.models.Subject"%>
+<%@page import="java.util.List"%>
+<%@page import="com.surajanbhule.util.HibernateUtil"%>
+<%@page import="org.hibernate.Session"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -22,49 +27,47 @@
 	font-family: 'Varta', sans-serif;
 }
 
-.table-container{
+.table-container {
 	padding: 0 10%;
 	margin: 40px auto 0;
-	}
+}
 
-.heading{
+.heading {
 	font-size: 40px;
 	text-align: center;
 	color: #FFEB3B;
 	margin-bottom: 40px;
 }
 
-.table{
+.table {
 	width: 100%;
 	border-collapse: collapse;
 }
 
-.table thead{
+.table thead {
 	background: #FBBF24;
-	
 }
 
-.table thead tr th{
+.table thead tr th {
 	font-size: 14px;
 	font-weight: 600px;
 	letter-spacing: 0.35px;
 	opacity: 1;
 	padding: 12px;
 	vertical-align: top;
-	border: 2.5px solid #0F172A ;
+	border: 2.5px solid #0F172A;
 }
 
-.table tbody tr td{
+.table tbody tr td {
 	font-size: 14px;
 	letter-spacing: 0.35px;
 	font-weight: lighter;
 	color: #FFEB3B;
-	background-color: #1F2937 ;
+	background-color: #1F2937;
 	padding: 8px;
 	text-align: center;
 	border: 2.5px solid #0F172A;
 }
-
 
 .home-section {
 	background: #0F172A;
@@ -76,8 +79,6 @@
 	transition: all 0.5s ease;
 	z-index: 2;
 }
-
-
 
 body {
 	background: #0F172A;
@@ -102,24 +103,32 @@ body {
 					</tr>
 				</thead>
 				<tbody>
-					<tr class="table-row">
-						<td >1</td>
-						<td>Java</td>
-						<td>20</td>
-					</tr>
-					
+				<%
+				Session sess = HibernateUtil.getSessionFactory().openSession();
+				
+				String hql="From Subject";
+				
+				@SuppressWarnings("deprecation")
+				Query<Subject> query=sess.createQuery(hql);
+				List<Subject>list=query.list();
+				
+				for(Subject s:list) {
+				
+				%>
 					<tr>
-						<td>2</td>
-						<td>Python</td>
-						<td>15</td>
+						<td><%= s.getSubject_id() %></td>
+						<td><%= s.getSubject_name() %></td>
+						<td><%= s.getNo_of_topics() %></td>
 					</tr>
+					<% } %>
+					
 				</tbody>
 
 			</table>
 		</div>
 
 	</div>
-		<script
+	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
 		crossorigin="anonymous"></script>

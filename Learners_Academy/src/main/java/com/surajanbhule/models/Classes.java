@@ -22,7 +22,6 @@ public class Classes {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int class_id;
 	private String class_name;
-	private double class_time;
 	private double class_duration;
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="teacher_id")
@@ -30,8 +29,7 @@ public class Classes {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="subject_id")
 	private Subject subject;
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name="classes_student",joinColumns = @JoinColumn(name="classes_id"), inverseJoinColumns = @JoinColumn(name="student_id"))
+	@ManyToMany(mappedBy = "classes_list")
 	private List<Student> student_list= new ArrayList<Student>();
 	
 	public Classes() {}
@@ -52,13 +50,7 @@ public class Classes {
 		this.class_name = class_name;
 	}
 
-	public double getClass_time() {
-		return class_time;
-	}
-
-	public void setClass_time(double class_time) {
-		this.class_time = class_time;
-	}
+	
 
 	public double getClass_duration() {
 		return class_duration;

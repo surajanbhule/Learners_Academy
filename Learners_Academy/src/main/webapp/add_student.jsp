@@ -1,3 +1,8 @@
+<%@page import="java.util.List"%>
+<%@page import="com.surajanbhule.models.Classes"%>
+<%@page import="org.hibernate.Query"%>
+<%@page import="com.surajanbhule.util.HibernateUtil"%>
+<%@page import="org.hibernate.Session"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>  
@@ -98,7 +103,13 @@ display: none;
 </head>
 <body class="login-body">
 	<%@include file="sidemenu.html"%>
-
+	<input type="hidden" id="status"
+		value="<%=request.getAttribute("status")%>">
+	<input type="hidden" id="id"
+		value="<%=request.getAttribute("id")%>">
+		
+	<input type="hidden" id="name"
+		value="<%=request.getAttribute("name")%>">
 	<div class="home-section">
 
 
@@ -145,11 +156,15 @@ display: none;
                             <div class="mb3">
                              	<select name="selected_class">
                              	    <option selected class="selected">Select Class</option>
-                             		<option>Java</option>
-                             		<option>Pyhton</option>
-                             		<option>Third</option>
-                             		<option>Fourth</option>
-                             		<option>Fifth</option>
+                             		 <%
+                             		 Session sess= HibernateUtil.getSessionFactory().openSession();
+                             		 String hql="From Classes";
+                             		 Query<Classes> query= sess.createQuery(hql);
+                             		 List<Classes> list= query.list();
+                             		 for(Classes c:list){
+                             		 %>
+                             		 <option value="<%=c.getClass_id() %>"><%=c.getClass_name() %></option>
+                             		 <% } %>
                              	</select>
                             </div>
 
@@ -165,6 +180,21 @@ display: none;
 		</div>
 		
 	</div>
+		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script type="text/javascript">
+		var status1 = document.getElementById("status").value;
+		var id = document.getElementById("id").value;
+		var name = document.getElementById("name").value;
+		if (status1 == "success") {
+			swal("Student Added Successfully!", "Student ID: "+id+" Name: "+name,
+					"success");
+		}
+		if(status1=="failed")
+		{
+			swal("Unable Added Student, Something Went Wrong!", "Please check input values",
+			"error");
+		}
+	</script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
