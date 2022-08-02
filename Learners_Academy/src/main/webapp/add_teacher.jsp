@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>  
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,7 +34,7 @@
 }
 
 .input-box {
-	width: 400px;
+	width: 600px;
 	position: relative;
 	background: transparent;
 	color: #FFEB3B;
@@ -68,6 +68,53 @@
 body {
 	background: #0F172A;
 }
+
+select {
+	width: 600px;
+	height: 35px;
+	padding: 10px 20px;
+	appearance: none;
+	margin: 10px;
+	margin-bottom: 20px;
+	background: #0F172A;
+	color: #6c757d;
+	font-size: 14px;
+	font-weight: 500;
+	outline: none;
+	border: none;
+	border-bottom: 1px solid #FEF9C3;
+	background: transparent;
+}
+
+select option {
+	background: #0F172A;
+}
+
+select:focus {
+	height: 100px;
+	color: #FFEB3B;
+}
+
+select:after{
+	width: 400px;
+	height: 35px;
+	padding: 10px 20px;
+	appearance: none;
+	margin: 10px;
+	margin-bottom: 20px;
+	background: #0F172A;
+	color: #6c757d;
+	font-size: 14px;
+	font-weight: 500;
+	outline: none;
+	border: none;
+	border-bottom: 1px solid #FEF9C3;
+	background: transparent;
+}
+.selected {
+	display: none;
+}
+
 </style>
 </head>
 <body class="login-body">
@@ -89,45 +136,54 @@ body {
 
 							<div class="mb-3">
 								<input type="text" class="form-control-sm input-box"
-									id="first_name" placeholder="First Name" name="first_name"
+									id="first_name" placeholder="First Name" name="teacher_first_name"
 									autocomplete="off">
 							</div>
 
 							<div class="mb-3">
 								<input type="text" class="form-control-sm input-box"
-									id="last_name" placeholder="Last Name" name="last_name"
+									id="last_name" placeholder="Last Name" name="teacher_last_name"
 									autocomplete="off">
 							</div>
 
 							<div class="mb-3">
 								<input type="text" class=" form-control-sm input-box"
-									id="address" placeholder="Address" name="address"
+									id="address" placeholder="Address" name="teacher_address"
 									autocomplete="off">
 							</div>
 
 							<div class="mb-3">
 								<input type="email" class=" form-control-sm input-box"
-									id="email" placeholder="Email@Xyz.com" name="email"
+									id="email" placeholder="Email@Xyz.com" name="teacher_email"
 									autocomplete="off">
 							</div>
 
 							<div class="mb-3">
 								<input type="text" class=" form-control-sm input-box" id="phone"
-									placeholder="phone number" name="phone" autocomplete="off">
+									placeholder="phone number" name="teacher_phone" autocomplete="off">
 							</div>
 
-
+							<div class="mb3">
+							    <center>Select Subjects</center>
+								<select multiple="multiple" name="selected_subjects" title="Select Subjects">
+									<option>Java</option>
+									<option>Python</option>
+									<option>C</option>
+									<option>C++</option>
+									<option>HTML CSS</option>
+								</select>
+							</div>
 
 							<button type="submit" class="btn btn-success">Add
 								Teacher</button>
 						</form>
 					</div>
 				</div>
-           
-				
+
+
 			</div>
 		</div>
-		
+
 	</div>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"

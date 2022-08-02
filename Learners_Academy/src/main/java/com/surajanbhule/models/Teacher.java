@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.ManyToAny;
@@ -31,8 +32,8 @@ public class Teacher {
 	private String teacher_phone;
 	private String teacher_address;
 	
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name="teacher_subject",joinColumns = @JoinColumn(name="teacher_id"),inverseJoinColumns = @JoinColumn(name="subject_id"))
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinTable(name="teacher_subject", joinColumns = @JoinColumn(name="teacher_id"),inverseJoinColumns = @JoinColumn(name="subject_id"))
 	private List<Subject> subject_list= new ArrayList<Subject>();
 
 	public int getTeacher_id() {

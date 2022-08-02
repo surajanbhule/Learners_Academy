@@ -26,8 +26,7 @@ public class Subject {
 	@Column(name="number_of_topics")
 	private int no_of_topics;
 	
-	@ManyToMany(mappedBy = "subject_list")
-	private List<Teacher> teacher_list=new ArrayList<Teacher>();
+
 	
 	
 	public Subject() {}
@@ -63,14 +62,6 @@ public class Subject {
 	}
 
 
-	public List<Teacher> getTeacher_list() {
-		return teacher_list;
-	}
-
-
-	public void setTeacher_list(List<Teacher> teacher_list) {
-		this.teacher_list = teacher_list;
-	}
 
 
 

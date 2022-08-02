@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>  
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -68,37 +68,17 @@
 body {
 	background: #0F172A;
 }
-
-select{
-	width: 600px;
-	padding: 10px 20px;
-	appearance:none;
-	margin: 10px;
-	margin-bottom: 20px;
-	background: #0F172A;
-	color: #6c757d;
-	font-size: 14px;
-	font-weight: 500;
-}
-
-select option{
-	background: #0F172A; 
-}
-
-
-
-select:focus {
-	color: #FFEB3B;
-}
-
-.selected{
-display: none;
-}
 </style>
 </head>
 <body class="login-body">
 	<%@include file="sidemenu.html"%>
-
+	<input type="hidden" id="status"
+		value="<%=request.getAttribute("status")%>">
+	<input type="hidden" id="id"
+		value="<%=request.getAttribute("id")%>">
+		
+	<input type="hidden" id="name"
+		value="<%=request.getAttribute("name")%>">
 	<div class="home-section">
 
 
@@ -107,64 +87,50 @@ display: none;
 
 				<div
 					class="card w-100 text-center justify-content-center align-items-center login-card">
-					<h4 class="card-title">Add Student</h4>
+					<h4 class="card-title">Add Subject</h4>
 					<div class="card-body">
-						<form action="AddStudent" method="post">
+						<form action="AddSubject" method="post">
 
 
 
 							<div class="mb-3">
 								<input type="text" class="form-control-sm input-box"
-									id="first_name" placeholder="First Name" name="student_first_name"
-									autocomplete="off">
+									id="subject_name" placeholder="Subject Name"
+									name="subject_name" autocomplete="off">
 							</div>
 
 							<div class="mb-3">
-								<input type="text" class="form-control-sm input-box"
-									id="last_name" placeholder="Last Name" name="student_last_name"
-									autocomplete="off">
+								<input type="number" class="form-control-sm input-box"
+									id="number_of_topics" placeholder="No Of Topics"
+									name="no_of_topics" autocomplete="off">
 							</div>
 
-							<div class="mb-3">
-								<input type="text" class=" form-control-sm input-box"
-									id="address" placeholder="Address" name="student_address"
-									autocomplete="off">
-							</div>
 
-							<div class="mb-3">
-								<input type="email" class=" form-control-sm input-box"
-									id="email" placeholder="Email@Xyz.com" name="student_email"
-									autocomplete="off">
-							</div>
 
-							<div class="mb-3">
-								<input type="text" class=" form-control-sm input-box" id="phone"
-									placeholder="phone number" name="student_phone" autocomplete="off">
-							</div>
-                            
-                            <div class="mb3">
-                             	<select name="selected_class">
-                             	    <option selected class="selected">Select Class</option>
-                             		<option>Java</option>
-                             		<option>Pyhton</option>
-                             		<option>Third</option>
-                             		<option>Fourth</option>
-                             		<option>Fifth</option>
-                             	</select>
-                            </div>
 
 
 							<button type="submit" class="btn btn-success">Add
-								Student</button>
+								Subject</button>
 						</form>
 					</div>
 				</div>
-           
-				
+
+
 			</div>
 		</div>
-		
+
 	</div>
+
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script type="text/javascript">
+		var status1 = document.getElementById("status").value;
+		var id = document.getElementById("id").value;
+		var name = document.getElementById("name").value;
+		if (status1 == "success") {
+			swal("Subject Added Successfully!", "Subject ID: "+id+" Name: "+name,
+					"success");
+		}
+	</script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
