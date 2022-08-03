@@ -1,3 +1,8 @@
+<%@page import="com.surajanbhule.models.Student"%>
+<%@page import="java.util.List"%>
+<%@page import="org.hibernate.Query"%>
+<%@page import="com.surajanbhule.util.HibernateUtil"%>
+<%@page import="org.hibernate.Session"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -102,29 +107,32 @@ body {
 						<th>Email</th>
 						<th>Phone</th>
 						<th>Address</th>
-						<th>Classes</th>
+						<th>Class Name</th>
 					</tr>
 				</thead>
 				<tbody>
+				
 					<tr >
-						<td >1</td>
-						<td>Suraj</td>
-						<td>Anbhule</td>
-						<td>surajanbhule69@gmail.com</td>
-						<td>9689462739</td>
-						<td>Madha Solapur</td>
-						<td><button type="button" class="btn btn-outline-success btn-sm">View Class</button></td>
-					</tr>
+					<%
+					Session ses=HibernateUtil.getSessionFactory().openSession();
+					String hql="From Student";
+					Query<Student> query=ses.createQuery(hql);
+					List<Student> list=query.list();
+					for(Student s:list)
+					{
+					%>
+						<td ><%= s.getStudent_id() %></td>
+						<td ><%= s.getStudent_first_name() %></td>
+						<td ><%= s.getStudent_last_name() %></td>
+						<td ><%= s.getStudent_email() %></td>
+						<td ><%= s.getStudent_phone() %></td>
+						<td ><%= s.getStudent_address() %></td>
+						<td ><%= s.getClasses_list().get(0).getClass_name() %></td>
 					
-					<tr>
-						<td >2</td>
-						<td>Sujata</td>
-						<td>Bhosale</td>
-						<td>sujatabhosale2206@gmail.com</td>
-						<td>8007702595</td>
-						<td>Pandharpur Solapur</td>
-						<td><button type="button" class="btn btn-outline-success btn-sm">View Class</button></td>
+						
 					</tr>
+					<% } %>	
+				    
 				</tbody>
 
 			</table>

@@ -7,7 +7,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Learning Academy</title>
-
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -18,6 +18,7 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
 	integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
+	
 
 <style type="text/css">
 .card {
@@ -90,13 +91,17 @@ body {
 		</div>
 	</div>
 	
-	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="sweetalert2.all.min.js"></script>
 	<script type="text/javascript">
-		var status1 = document.getElementById("status").value;
-        if(status1=="failed"){
-		   swal("Login Failed!", "Check username and password, try again.",
-				"error");
-        }
+	var status1 = document.getElementById("status").value;
+	if (status1 == "failed") {
+	Swal.fire({
+		  title: 'Login Failed',
+		  text: 'Please check username or password',
+		  icon: 'error',
+		  confirmButtonText: 'OK'
+		})
+	}
 	</script>
 
 

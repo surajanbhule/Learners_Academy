@@ -26,7 +26,7 @@ public class AddSubject extends HttpServlet {
 		Subject subject = new Subject();
 		subject.setNo_of_topics(topics);
 		subject.setSubject_name(subject_name);
-		
+		try {
 		session.beginTransaction();
 		Serializable serializable=session.save(subject);
 		session.getTransaction().commit();
@@ -37,6 +37,14 @@ public class AddSubject extends HttpServlet {
 		req.setAttribute("name", subject_name);
 		req.setAttribute("status", "success");
 		rd.include(req, resp);
+		}catch (Exception e) {
+			RequestDispatcher rd =req.getRequestDispatcher("/add_subject.jsp");
+			req.setAttribute("status", "failed");
+			req.setAttribute("name", e);
+			req.setAttribute("id", "0");
+			rd.include(req, resp);
+		}
+		
 	}
 	
 

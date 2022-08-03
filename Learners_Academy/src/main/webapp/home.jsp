@@ -87,8 +87,6 @@
 body {
 	background: #0F172A;
 }
-
-
 </style>
 </head>
 <body>
@@ -96,64 +94,67 @@ body {
 	<%@include file="sidemenu.html"%>
 
 	<div class="home-section">
-      <%
-       Session s= HibernateUtil.getSessionFactory().openSession();
-       String h1="From Student";
-       Query<Student> q1= s.createQuery(h1);
-       List<Student> students=q1.list();
-       
-       int no_of_students=students.size();
-       
-       String h2="From Teacher";
-       Query<Teacher> q2= s.createQuery(h2);
-       List<Teacher> teachers=q2.list();
-       
-       int no_of_teachers=teachers.size();
-       
-       String h3="From Subject";
-       Query<Subject> q3= s.createQuery(h3);
-       List<Subject> subjects=q3.list();
-       
-       int no_of_subjects=subjects.size();
-       
-       String h4="From Classes";
-       Query<Classes> q4= s.createQuery(h4);
-       List<Classes> classes=q4.list();
-       
-       int no_of_classes=classes.size();
-       
-       s.close();
-     
-      %>
-      <div class="mt-3 ms-5">
-       
-		<button type="button" class="btn btn-outline-success position-relative mt-5 ms-5">
-			Students <span
-				class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-				<%= no_of_students %> 
-			</span>
-		</button>
-		
-		<button type="button" class="btn btn-outline-success position-relative mt-5 ms-5">
-			Teachers <span
-				class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-				<%= no_of_teachers %> 
-			</span>
-		</button>
-		
-		<button type="button" class="btn btn-outline-success position-relative mt-5 ms-5">
-			Subjects <span
-				class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-				<%= no_of_subjects %>
-			</span>
-		</button>
-		
-			<button type="button" class="btn btn-outline-success position-relative mt-5 ms-5">
-			Classes <span
-				class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-				<%= no_of_classes %> 
-			</span>
-		</button>
+		<%
+		Session s = HibernateUtil.getSessionFactory().openSession();
+		String h1 = "From Student";
+		Query<Student> q1 = s.createQuery(h1);
+		List<Student> students = q1.list();
+
+		int no_of_students = students.size();
+
+		String h2 = "From Teacher";
+		Query<Teacher> q2 = s.createQuery(h2);
+		List<Teacher> teachers = q2.list();
+
+		int no_of_teachers = teachers.size();
+
+		String h3 = "From Subject";
+		Query<Subject> q3 = s.createQuery(h3);
+		List<Subject> subjects = q3.list();
+
+		int no_of_subjects = subjects.size();
+
+		String h4 = "From Classes";
+		Query<Classes> q4 = s.createQuery(h4);
+		List<Classes> classes = q4.list();
+
+		int no_of_classes = classes.size();
+
+		s.close();
+		%>
+		<div class="mt-3 ms-5">
+
+			<button type="button"
+				class="btn btn-outline-success position-relative mt-5 ms-5">
+				Students <span
+					class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+					<%=no_of_students%>
+				</span>
+			</button>
+
+			<button type="button"
+				class="btn btn-outline-success position-relative mt-5 ms-5">
+				Teachers <span
+					class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+					<%=no_of_teachers%>
+				</span>
+			</button>
+
+			<button type="button"
+				class="btn btn-outline-success position-relative mt-5 ms-5">
+				Subjects <span
+					class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+					<%=no_of_subjects%>
+				</span>
+			</button>
+
+			<button type="button"
+				class="btn btn-outline-success position-relative mt-5 ms-5">
+				Classes <span
+					class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+					<%=no_of_classes%>
+				</span>
+			</button>
 		</div>
 
 		<div class="table-container">
@@ -186,9 +187,15 @@ body {
 						<td><%=c.getTeacher().getTeacher_first_name()%></td>
 						<td><%=c.getSubject().getSubject_name()%></td>
 						<td><%=c.getClass_duration()%></td>
-
-						<td><button type="button"
-								class="btn btn-outline-success btn-sm">View Students</button></td>
+                        
+						<td> <form action="view_students.jsp" method="post">
+								<input type="hidden" value="<%= c.getClass_id() %>"
+									name="class_id">
+								<input type="hidden" value="<%= c.getClass_name() %>"
+									name="class_name">
+								<button type="submit" class="btn btn-outline-success btn-sm">View
+									Students</button>
+							</form></td>
 						<%
 						}
 						%>

@@ -61,8 +61,10 @@ public class AddTeacher extends HttpServlet {
 		req.setAttribute("id", id);
 		rd.include(req, resp);
 		}catch (Exception e) {
+			RequestDispatcher rd =req.getRequestDispatcher("/add_teacher.jsp");
 			req.setAttribute("status", "failed");
-			RequestDispatcher rd= req.getRequestDispatcher("/add_teacher.jsp");
+			req.setAttribute("name", e);
+			req.setAttribute("id", "0");
 			rd.include(req, resp);
 		}
 	}

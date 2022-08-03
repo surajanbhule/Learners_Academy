@@ -16,6 +16,7 @@
 	rel="stylesheet"
 	integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
 	crossorigin="anonymous">
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <title>Learners Academy</title>
 <style type="text/css">
 @import
@@ -180,20 +181,27 @@ display: none;
 		</div>
 		
 	</div>
-		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+		<script src="sweetalert2.all.min.js"></script>
 	<script type="text/javascript">
-		var status1 = document.getElementById("status").value;
-		var id = document.getElementById("id").value;
-		var name = document.getElementById("name").value;
-		if (status1 == "success") {
-			swal("Student Added Successfully!", "Student ID: "+id+" Name: "+name,
-					"success");
-		}
-		if(status1=="failed")
-		{
-			swal("Unable Added Student, Something Went Wrong!", "Please check input values",
-			"error");
-		}
+	var status1 = document.getElementById("status").value;
+	var id = document.getElementById("id").value;
+	var name = document.getElementById("name").value;
+	if (status1 == "success") {
+	Swal.fire({
+		  title: 'Student Added Successfully',
+		  text: 'Student Id '+id+' Student Name: '+name,
+		  icon: 'success',
+		  confirmButtonText: 'OK'
+		})
+	}
+	if(status1 == "failed"){
+		Swal.fire({
+			  title: 'Unable To Add Student, Something Went Wrong (Check Input And Try Again)',
+			  text: 'Messege: '+name,
+			  icon: 'error',
+			  confirmButtonText: 'OK'
+			})
+	}
 	</script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"

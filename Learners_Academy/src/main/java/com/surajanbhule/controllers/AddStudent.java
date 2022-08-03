@@ -43,6 +43,7 @@ public class AddStudent extends HttpServlet {
 		student.setStudent_phone(phone);
 		student.setClasses_list(list);
 		
+		try {
 		session.beginTransaction();
 		Serializable serializable=session.save(student);
 		int id=(int)serializable;
@@ -53,6 +54,13 @@ public class AddStudent extends HttpServlet {
 		req.setAttribute("id", id);
 		req.setAttribute("name", first_name+" "+last_name);
 		rd.include(req, resp);
+		}catch (Exception e) {
+			RequestDispatcher rd =req.getRequestDispatcher("/add_student.jsp");
+			req.setAttribute("status", "failed");
+			req.setAttribute("name", e);
+			req.setAttribute("id", "0");
+			rd.include(req, resp);
+		}
 		
 	}
 	

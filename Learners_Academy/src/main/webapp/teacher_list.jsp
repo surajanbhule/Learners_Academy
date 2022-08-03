@@ -128,10 +128,16 @@ body {
 						<td><%= t.getTeacher_email()  %></td>
 						<td><%= t.getTeacher_phone()  %></td>
 						<td><%= t.getTeacher_address()  %></td>
-						<td><button type="button" class="btn btn-outline-success btn-sm">View Subjects</button></td>
-						<% } %>
+								<td> <form action="view_subjects.jsp" method="post">
+								<input type="hidden" value="<%= t.getTeacher_id() %>"
+									name="teacher_id">
+								<input type="hidden" value="<%= t.getTeacher_first_name()+" "+t.getTeacher_last_name() %>"
+									name="teacher_name">
+								<button type="submit" class="btn btn-outline-success btn-sm">View
+									Subjects</button>
+							</form></td>
 					</tr>
-					
+					<% } %>
 					
 				</tbody>
 
