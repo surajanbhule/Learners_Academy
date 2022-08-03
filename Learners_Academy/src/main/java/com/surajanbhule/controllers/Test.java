@@ -25,19 +25,12 @@ public class Test extends HttpServlet {
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		
-		Subject s=new Subject();
-		s.setSubject_name("Java");
-		
-		Teacher t = new Teacher();
-		t.setTeacher_first_name("Teacher Name");
-	    Classes class1=new Classes();
-	    class1.setClass_name("Demo");
-	    class1.setClass_duration(150);
-	    class1.setSubject(s);
-	    class1.setTeacher(t);
+		Login login = new Login();
+		login.setUsername("surajanbhule69@gmail.com");
+		login.setPassword("Suraj@2595");
 	    
 	    session.beginTransaction();
-	    session.save(class1);
+	    session.save(login);
 	    session.getTransaction().commit();
 
 	}

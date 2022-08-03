@@ -8,6 +8,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import com.surajanbhule.util.ProcessLogin;
 
 
@@ -30,6 +32,7 @@ public class AdminLogin extends HttpServlet {
 			System.out.println("pass: "+pass);
 			
 			if(username.equals(user)&& password.equals(pass)) {
+				
 				RequestDispatcher rd = req.getRequestDispatcher("/home.jsp");
 				rd.forward(req, resp);
 			}

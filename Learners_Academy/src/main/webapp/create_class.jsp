@@ -153,7 +153,7 @@ select:after{
 							</div>
 
 							<div class="mb-3">
-								<input type="text" class="form-control-sm input-box"
+								<input type="number" class="form-control-sm input-box"
 									id="class_duration" placeholder="Class Duration In Minutes" name="class_duration"
 									autocomplete="off">
 							</div>
@@ -161,7 +161,7 @@ select:after{
 							
                             
                             <div class="mb3">
-                             	<select name="selected_subject">
+                             	<select name="selected_subject" required="required">
                              	    <option selected class="selected">Select Subject</option>
                              	    <%
                              	     Session sess= HibernateUtil.getSessionFactory().openSession();
@@ -177,7 +177,7 @@ select:after{
                             </div>
                             
                               <div class="mb3">
-                             	<select name="selected_teacher">
+                             	<select name="selected_teacher" required="required">
                              	    <option selected class="selected">Select Teacher</option>
                              	    <%
                              	     Session sess1= HibernateUtil.getSessionFactory().openSession();
@@ -234,7 +234,14 @@ select:after{
 			  icon: 'error',
 			  confirmButtonText: 'OK'
 			})
-	}
+	}if(status1 == "empty"){
+		Swal.fire({
+			  title: 'Please fill all input values',
+			  text: 'You should fill all text and select specific option from dropdown ',
+			  icon: 'error',
+			  confirmButtonText: 'OK'
+			})
+	} 
 	</script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
