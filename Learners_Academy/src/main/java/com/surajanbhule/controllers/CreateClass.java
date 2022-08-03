@@ -22,7 +22,7 @@ public class CreateClass extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		Session session = HibernateUtil.getSessionFactory().openSession();
+		
 		String sub_id = req.getParameter("selected_subject");
 		System.out.println(sub_id);
 		String teach_id = req.getParameter("selected_teacher");
@@ -31,23 +31,6 @@ public class CreateClass extends HttpServlet {
 		String class_name = req.getParameter("class_name");
 		String class_durat = req.getParameter("class_duration");
 		
-		if (sub_id.equals("Select Subject")) {
-			RequestDispatcher rd = req.getRequestDispatcher("/create_class.jsp");
-			req.setAttribute("status", "empty-subject");
-			req.setAttribute("name", "");
-			req.setAttribute("id", "0");
-			rd.include(req, resp);
-		}
-
-		if (teach_id.equals("Select Teacher")) {
-			RequestDispatcher rd = req.getRequestDispatcher("/create_class.jsp");
-			req.setAttribute("status", "empty-teacher");
-			req.setAttribute("name", "");
-			req.setAttribute("id", "0");
-			rd.include(req, resp);
-		}
-
-
 		if (class_name.isEmpty() || class_durat.isEmpty()||teach_id.equals("Select Teacher")||sub_id.equals("Select Subject")) {
 			RequestDispatcher rd = req.getRequestDispatcher("/create_class.jsp");
 			req.setAttribute("status", "empty");
@@ -56,7 +39,7 @@ public class CreateClass extends HttpServlet {
 			rd.include(req, resp);
 		}
 
-		
+		Session session = HibernateUtil.getSessionFactory().openSession();
 		double call_duration = Double.parseDouble(class_durat);
 		int teacher_id = Integer.parseInt(teach_id);
 		int subject_id = Integer.parseInt(sub_id);

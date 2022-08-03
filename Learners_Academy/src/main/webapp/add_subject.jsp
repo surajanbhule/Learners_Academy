@@ -140,7 +140,14 @@ body {
 			  icon: 'error',
 			  confirmButtonText: 'OK'
 			})
-	}
+	}if(status1 == "empty"){
+		Swal.fire({
+			  title: 'Please fill all input values',
+			  text: 'You should fill all text and select specific option from dropdown ',
+			  icon: 'error',
+			  confirmButtonText: 'OK'
+			})
+	} 
 	</script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
