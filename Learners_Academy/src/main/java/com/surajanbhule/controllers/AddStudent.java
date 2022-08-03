@@ -22,14 +22,26 @@ public class AddStudent extends HttpServlet {
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		Session session= HibernateUtil.getSessionFactory().openSession();
+		
 		String first_name=req.getParameter("student_first_name");
 		String last_name=req.getParameter("student_last_name");
 		String address=req.getParameter("student_address");
 		String email=req.getParameter("student_email");
 		String phone=req.getParameter("student_phone");
+		String id_class=req.getParameter("selected_class");
 		
-		int class_id= Integer.parseInt(req.getParameter("selected_class"));
+		if(first_name.isEmpty()||last_name.isEmpty()||email.isEmpty()||phone.isEmpty()||address.isEmpty()||id_class.equals("Select Class"))
+		{
+			RequestDispatcher rd =req.getRequestDispatcher("/add_student.jsp");
+			req.setAttribute("status", "empty");
+			req.setAttribute("name", "");
+			req.setAttribute("id", "0");
+			rd.include(req, resp);
+		}
+		
+		int class_id= Integer.parseInt(id_class);
+
+		Session session= HibernateUtil.getSessionFactory().openSession();
 		Classes class1= session.get(Classes.class, class_id);
 		
 		List<Classes> list=new ArrayList<Classes>();
