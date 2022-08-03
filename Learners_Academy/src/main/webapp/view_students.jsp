@@ -91,7 +91,7 @@ body {
 </style>
 </head>
 <body>
-
+     <% response.setHeader("Cache-Control", "no-cache, no-store"); %>
 	<%@include file="sidemenu.html"%>
 
 	<div class="home-section">

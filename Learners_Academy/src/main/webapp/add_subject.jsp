@@ -73,6 +73,7 @@ body {
 </head>
 <body >
 	<%
+	response.setHeader("Cache-Control", "no-cache, no-store");
 	String uname = (String) session.getAttribute("uname");
 	String pass = (String) session.getAttribute("pass");
 	if(uname==null||pass==null){
@@ -145,7 +146,7 @@ body {
 		  title: 'Subject Added Successfully',
 		  text: 'Subject Id '+id+' Subject Name: '+name,
 		  icon: 'success',
-		  confirmButtonText: 'Cool'
+		  confirmButtonText: 'Ok'
 		})
 	}if(status1 == "failed"){
 		Swal.fire({

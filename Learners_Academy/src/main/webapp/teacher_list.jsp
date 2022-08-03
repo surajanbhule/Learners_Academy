@@ -93,6 +93,7 @@ body {
 </head>
 <body>
 	<%
+	response.setHeader("Cache-Control", "no-cache, no-store");
 	String uname = (String) session.getAttribute("uname");
 	String pass = (String) session.getAttribute("pass");
 	if(uname==null||pass==null){
