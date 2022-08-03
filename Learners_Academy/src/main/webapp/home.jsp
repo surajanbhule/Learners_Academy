@@ -91,7 +91,20 @@ body {
 </style>
 </head>
 <body>
-   
+	<%
+	String uname = (String) session.getAttribute("uname");
+	String pass = (String) session.getAttribute("pass");
+	if(uname==null||pass==null){
+		 uname="";
+		 pass="";
+	 }
+	if (uname.equals("") && pass.equals("")) {
+		request.setAttribute("status", "not-login");
+		RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+		request.setAttribute("status", "not-login");
+		rd.forward(request, response);
+	}
+	%>
 	<%@include file="sidemenu.html"%>
 
 	<div class="home-section">
@@ -188,15 +201,16 @@ body {
 						<td><%=c.getTeacher().getTeacher_first_name()%></td>
 						<td><%=c.getSubject().getSubject_name()%></td>
 						<td><%=c.getClass_duration()%></td>
-                        
-						<td> <form action="view_students.jsp" method="post">
-								<input type="hidden" value="<%= c.getClass_id() %>"
-									name="class_id">
-								<input type="hidden" value="<%= c.getClass_name() %>"
-									name="class_name">
+
+						<td>
+							<form action="view_students.jsp" method="post">
+								<input type="hidden" value="<%=c.getClass_id()%>"
+									name="class_id"> <input type="hidden"
+									value="<%=c.getClass_name()%>" name="class_name">
 								<button type="submit" class="btn btn-outline-success btn-sm">View
 									Students</button>
-							</form></td>
+							</form>
+						</td>
 						<%
 						}
 						%>

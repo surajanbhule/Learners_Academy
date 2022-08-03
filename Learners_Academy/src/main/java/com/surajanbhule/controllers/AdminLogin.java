@@ -32,12 +32,16 @@ public class AdminLogin extends HttpServlet {
 			System.out.println("pass: "+pass);
 			
 			if(username.equals(user)&& password.equals(pass)) {
-				
+				HttpSession httpSession=req.getSession();
+				httpSession.setAttribute("uname",user);
+				httpSession.setAttribute("pass", pass);
 				RequestDispatcher rd = req.getRequestDispatcher("/home.jsp");
 				rd.forward(req, resp);
 			}
 			else {
-				
+				HttpSession httpSession=req.getSession();
+				httpSession.setAttribute("uname","");
+				httpSession.setAttribute("pass", "");
 				RequestDispatcher rd = req.getRequestDispatcher("/login.jsp");
 				req.setAttribute("status","failed");
 				rd.include(req, resp);

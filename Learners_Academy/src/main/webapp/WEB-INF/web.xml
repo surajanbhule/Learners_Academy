@@ -40,6 +40,12 @@
   	<description></description>
   	<servlet-class>com.surajanbhule.controllers.AddStudent</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>Logout</servlet-name>
+  	<display-name>Logout</display-name>
+  	<description></description>
+  	<servlet-class>com.surajanbhule.controllers.Logout</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>AdminLogin</servlet-name>
   	<url-pattern>/AdminLogin</url-pattern>
@@ -63,6 +69,10 @@
   <servlet-mapping>
   	<servlet-name>AddStudent</servlet-name>
   	<url-pattern>/AddStudent</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>Logout</servlet-name>
+  	<url-pattern>/Logout</url-pattern>
   </servlet-mapping>
  <welcome-file-list>
  	<welcome-file>login.jsp</welcome-file>

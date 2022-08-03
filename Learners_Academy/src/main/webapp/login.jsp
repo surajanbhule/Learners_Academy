@@ -57,6 +57,20 @@ body {
 </style>
 </head>
 <body class="login-body">
+<%
+
+ String uname=(String)session.getAttribute("uname");
+ String pass=(String)session.getAttribute("pass");
+ System.out.println(uname);
+ System.out.println(pass);
+ if(uname==null||pass==null){
+	 uname="";
+	 pass="";
+ }
+ if(uname.equals("surajanbhule69@gmail.com")&&pass.equals("Suraj@2595")){
+	 response.sendRedirect("/home.jsp");
+ }
+%>
 	<input type="hidden" id="status"
 		value="<%= request.getAttribute("status") %>">
 	<div class="container mt-5">
@@ -82,7 +96,7 @@ body {
 									placeholder="password" name="password">
 							</div>
 
-							<button type="submit" class="btn btn-success">Login</button>
+							<button type="submit" class="btn btn-outline-success">Login</button>
 						</form>
 					</div>
 				</div>
@@ -102,6 +116,22 @@ body {
 		  confirmButtonText: 'OK'
 		})
 	}
+	if (status1 == "logout") {
+		Swal.fire({
+			  title: 'Logout Successfully',
+			  text: 'Login again to access admin panel',
+			  icon: 'success',
+			  confirmButtonText: 'OK'
+			})
+		}
+	if (status1 == "not-login") {
+		Swal.fire({
+			  title: 'Unable To Access',
+			  text: 'Please login first!',
+			  icon: 'error',
+			  confirmButtonText: 'OK'
+			})
+		}
 	</script>
 
 

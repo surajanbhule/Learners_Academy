@@ -123,7 +123,21 @@ select:after{
 }
 </style>
 </head>
-<body class="login-body">
+<body >
+	<%
+	String uname = (String) session.getAttribute("uname");
+	String pass = (String) session.getAttribute("pass");
+	if(uname==null||pass==null){
+		 uname="";
+		 pass="";
+	 }
+	if (uname.equals("") && pass.equals("")) {
+		request.setAttribute("status", "not-login");
+		RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+		request.setAttribute("status", "not-login");
+		rd.forward(request, response);
+	}
+	%>
 	<%@include file="sidemenu.html"%>
 		<input type="hidden" id="status"
 		value="<%=request.getAttribute("status")%>">
