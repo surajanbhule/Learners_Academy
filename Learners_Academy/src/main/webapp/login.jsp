@@ -1,4 +1,7 @@
 
+<%@page import="com.surajanbhule.util.Login"%>
+<%@page import="com.surajanbhule.util.HibernateUtil"%>
+<%@page import="org.hibernate.Session"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!doctype html>
@@ -69,6 +72,16 @@ body {
  }
  if(uname.equals("surajanbhule69@gmail.com")&&pass.equals("Suraj@2595")){
 	 response.sendRedirect("/home.jsp");
+ }
+ 
+ Session sess= HibernateUtil.getSessionFactory().openSession();
+ Login login=sess.get(Login.class, 1);
+ if(!login.getUsername().isEmpty()){
+	 login.setUsername("surajanbhule69@gmail.com");
+	 login.setPassword("admin@123");
+	 sess.beginTransaction();
+	 sess.save(login);
+	 sess.getTransaction().commit();
  }
 %>
 	<input type="hidden" id="status"
