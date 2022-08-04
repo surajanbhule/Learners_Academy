@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 
 
@@ -25,14 +26,15 @@ public class Test extends HttpServlet {
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		
-		Login login = new Login();
-		login.setUsername("surajanbhule69@gmail.com");
-		login.setPassword("Suraj@2595");
-	    
-	    session.beginTransaction();
-	    session.save(login);
-	    session.getTransaction().commit();
-
+		
+		String sql="DELETE FROM teacher_subject WHERE teacher_id="+1;
+		SQLQuery<?> query=session.createSQLQuery(sql);
+		 System.out.println(" deleted");
+		 session.beginTransaction();
+		 int i=query.executeUpdate();
+		 session.getTransaction().commit();
+	    System.out.println(i+" deleted");
+	   
 	}
 
 }

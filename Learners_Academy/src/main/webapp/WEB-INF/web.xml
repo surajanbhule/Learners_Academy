@@ -46,6 +46,18 @@
   	<description></description>
   	<servlet-class>com.surajanbhule.controllers.Logout</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>DeleteSubject</servlet-name>
+  	<display-name>DeleteSubject</display-name>
+  	<description></description>
+  	<servlet-class>com.surajanbhule.controllers.DeleteSubject</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>DeleteTeacher</servlet-name>
+  	<display-name>DeleteTeacher</display-name>
+  	<description></description>
+  	<servlet-class>com.surajanbhule.controllers.DeleteTeacher</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>AdminLogin</servlet-name>
   	<url-pattern>/AdminLogin</url-pattern>
@@ -73,6 +85,14 @@
   <servlet-mapping>
   	<servlet-name>Logout</servlet-name>
   	<url-pattern>/Logout</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>DeleteSubject</servlet-name>
+  	<url-pattern>/DeleteSubject</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>DeleteTeacher</servlet-name>
+  	<url-pattern>/DeleteTeacher</url-pattern>
   </servlet-mapping>
  <welcome-file-list>
  	<welcome-file>login.jsp</welcome-file>
