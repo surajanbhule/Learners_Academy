@@ -175,15 +175,14 @@ body {
 		if (status1 == "not-delete") {
 			Swal
 					.fire({
-						title : 'Unable To Delete Subject, Something Went Wrong (Try Again)',
-						text : 'Messege: ' + name,
+						title : 'Unable To Delete Subject, Subject already assigned to the teacher Or class',
+						text : 'Try delete other subject',
 						icon : 'error',
 						confirmButtonText : 'OK'
 					})
 		}
 		if (status1 == "empty") {
-			Swal
-					.fire({
+			Swal.fire({
 						title : 'Please fill all input values',
 						text : 'You should fill all text and select specific option from dropdown ',
 						icon : 'error',
