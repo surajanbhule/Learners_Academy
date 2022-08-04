@@ -1,2 +1,4 @@
-Learners Academy Admin Project
-Downlaod code and import into eclipse to run without errors.
+#Learners Academy Admin Project
+#Downlaod code and unzip
+#Import Project to eclipse
+#Please make sure import only folder that contains src(Learners Academy Folder)
